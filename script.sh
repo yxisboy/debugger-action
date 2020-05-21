@@ -9,11 +9,12 @@ fi
 
 # Install tmate on macOS or Ubuntu
 echo Setting up tmate...
-if [ -x "$(command -v brew)" ]; then
-  brew install tmate > /tmp/brew.log
-fi
 if [ -x "$(command -v apt-get)" ]; then
   curl -fsSL git.io/tmate.sh | bash
+elif [ -x "$(command -v brew)" ]; then
+  brew install tmate
+else
+  exit 1
 fi
 
 # Generate ssh key if needed
